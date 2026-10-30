@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- DigiWed domain lock removed for independent hosting -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Muhammad &amp; Mufeedha &#8211; Wedding Invitation</title>
@@ -20,7 +19,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://imagedelivery.net">
-<link rel="dns-prefetch" href="https://digiwed-media-broker.murshid161.workers.dev">
 <link rel="dns-prefetch" href="https://yaseen-jumana-wedding-default-rtdb.firebaseio.com">
 <link rel="dns-prefetch" href="https://www.gstatic.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -858,8 +856,7 @@ body.admin-on .gal-card:not(.empty) .gal-del{display:block;position:absolute;top
 <div id="bg"></div>
 <div id="petals"></div>
 <div id="toast"></div>
-<!-- no crossorigin: the track is streamed from R2 / the DigiWed library, and
-     a CORS-mode <audio> refuses any host that doesn't send CORS headers -->
+<!-- Background audio -->
 <audio id="bgmAudio" preload="auto" loop></audio>
 
 <!-- ADMIN modal -->
@@ -1278,20 +1275,7 @@ body.admin-on .gal-card:not(.empty) .gal-del{display:block;position:absolute;top
     <button id="pdfDownloadBtn" class="no-pdf" aria-label="Download as PDF" title="Save as PDF" onclick="downloadInvitePDF()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16l-4-4h3V4h2v8h3l-4 4Z"/><path d="M4 18h16v2H4z"/></svg>
     </button>
-    <a class="dw" id="dwCredit" href="https://wa.me/919747986523?text=I%20want%20to%20know%20more%20about%20digital%20wedding%20invitation" target="_blank" rel="noopener">Crafted by Digi<span>Wed</span></a>
     <button id="adminEntryBtn" class="no-pdf" onclick="openAdminModal()">Admin</button>
-  </div>
-
-  <div class="foot-social-row no-pdf">
-    <a class="foot-social" href="https://wa.me/919747986523?text=I%20want%20to%20know%20more%20about%20digital%20wedding%20invitation" target="_blank" rel="noopener" aria-label="WhatsApp DigiWed">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6a9.5 9.5 0 0 1-3.6-3.2c-.3-.4-.7-1.1-.7-2.1s.5-1.5.7-1.7a.8.8 0 0 1 .6-.3h.4c.1 0 .3 0 .5.4l.7 1.6c0 .2.1.3 0 .5l-.3.5-.3.3c-.1.1-.2.3-.1.5a7 7 0 0 0 3.1 2.7c.2.1.4.1.5 0l.7-.8c.2-.2.3-.2.5-.1l1.5.7c.2.1.4.2.4.3.1.1.1.5 0 .9Z"/></svg>
-    </a>
-    <a class="foot-social" href="https://instagram.com/digi_.wed" target="_blank" rel="noopener" aria-label="DigiWed on Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-    </a>
-    <a class="foot-social" href="https://digiwed.online" target="_blank" rel="noopener" aria-label="DigiWed website">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>
-    </a>
   </div>
 </footer>
 
@@ -1301,21 +1285,17 @@ body.admin-on .gal-card:not(.empty) .gal-del{display:block;position:absolute;top
 /* ===== CONFIG ===== */
 var WISH_PATH        = "azeez-mufeedha/wishes";
 var BGM_PATH         = "azeez-mufeedha/bgm-url";
-/* The couple asked for "A Thousand Years" (Christina Perri) - "heart beats
-   fast, colours and promises". No track ships with the page yet: ADMIN > BGM
-   either uploads a file or picks one from the DigiWed library; both write
-   BGM_PATH. Until then the film's own sound is the only music. */
 var DEFAULT_BGM      = "assets/noor-ul-nikah.mp3";
 var COVER_PATH       = "azeez-mufeedha/cover-url";
 var HERO_VIDEO_PATH  = "azeez-mufeedha/hero-video-url";
 var IMG_PATH         = "azeez-mufeedha/media";
 var PARTY_PATH       = "azeez-mufeedha/party";   /* round photos: family cards groom|bride + little ones kd1..kd4 */
-var COUPLE_FOLDER    = "digiwed-invitations/azeez-mufeedha";
+var COUPLE_FOLDER    = "wedding-invitations/azeez-mufeedha";
 var LS               = "am_";     /* github.io is ONE origin for every invite -
                                      namespace local storage or the two links
                                      share each other's "my wishes" list */
 var ADMIN_PIN        = "2026AM";
-var WORKER_URL       = "https://digiwed-media-broker.murshid161.workers.dev";
+var WORKER_URL       = "";
 var COUPLE_LABEL     = "Muhammad & Mufeedha";
 
 var FIREBASE_CONFIG = {
@@ -2301,18 +2281,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if (e.key === "Enter") checkPin();
   });
 
-  /* long-press the DigiWed credit → admin (see memory: credit long-press) */
-  var pressT, credit = document.getElementById("dwCredit");
-  var startPress = function(){ pressT = setTimeout(function(){ credit.dataset.lp = "1"; openAdminModal(); }, 900); };
-  var endPress   = function(){ clearTimeout(pressT); };
-  credit.addEventListener("touchstart", startPress, { passive: true });
-  credit.addEventListener("touchend", endPress);
-  credit.addEventListener("mousedown", startPress);
-  credit.addEventListener("mouseup", endPress);
-  credit.addEventListener("click", function(e){
-    if (credit.dataset.lp === "1") { e.preventDefault(); credit.dataset.lp = ""; }
-  });
-
+  
   /* Firebase (deferred SDK is now parsed) */
   try {
     firebase.initializeApp(FIREBASE_CONFIG);
@@ -2358,8 +2327,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 
-<!-- BGM ADMIN menu + DigiWed library picker (block from JacksonwedsRenisha2 /
-     junaid_safna; palette mapped to pastel blue, writes to this invite's BGM_PATH) -->
+<!-- BGM ADMIN menu + Wedding Music Library picker -->
 <style>
 #bgmSheet{position:fixed;inset:0;z-index:2500;background:rgba(40,8,14,.55);display:none;align-items:flex-end;justify-content:center}
 #bgmSheet.open{display:flex}
@@ -2391,7 +2359,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="bgm-head"><b id="bgmSheetTitle">Background music</b><button class="bgm-close" onclick="bgmSheetClose()" aria-label="Close">&times;</button></div>
     <div id="bgmMenu" class="bgm-opts">
       <button class="bgm-opt" onclick="bgmSheetClose();adminUploadBgm()">Upload your own song<small>An mp3 / m4a from your phone (we recommend a 1–2 minute cut)</small></button>
-      <button class="bgm-opt" onclick="bgmLibOpen()">Choose from the DigiWed library<small>Ready-made wedding tracks — preview and set in one tap</small></button>
+      <button class="bgm-opt" onclick="bgmLibOpen()">Choose from the Wedding Music library<small>Ready-made wedding tracks — preview and set in one tap</small></button>
     </div>
     <div id="bgmFilters" class="bgm-filters" hidden></div>
     <div id="bgmList" class="bgm-list" hidden></div>
@@ -2426,7 +2394,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   /* library view */
   window.bgmLibOpen = function(){
-    document.getElementById("bgmSheetTitle").textContent = "DigiWed library";
+    document.getElementById("bgmSheetTitle").textContent = "Wedding Music library";
     menu.hidden = true; filters.hidden = false; list.hidden = false;
     if (!window.DW_BGM_LIBRARY) {
       list.textContent = "";
